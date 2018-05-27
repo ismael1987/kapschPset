@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<head>
+    <meta charset="UTF-8"/>
+    <title>insertImage</title>
+</head>
+<body>
+<form th:action="@{/addphoto}" th:object="${newphoto}" th:method="post" enctype="multipart/form-data">
+
+
+    <label>picture</label>
+    <!--input  type="text" name="Name" required-->
+    <input class="w3-input w3-border" name="file" type="file" placeholder="upload photo" required>
+
+
+    <label>category</label>
+    <!--input  type="text" name="Name" required-->
+    <input class="w3-input w3-border" type="text" placeholder="Enter category" th:field="*{category}" required>
+    <button type="submit">adding</button>
+</form>
+    <div class="w3-row">
+        <div class="w3-quarter" th:each="profile : ${images}">
+            <div >
+
+
+                <!--<p style="display:none"><input type="text" name="idParticipant" th:value="${profile.id}"/></p>-->
+                 <img th:src="@{../imageController/{id}(id=${profile.id})}" style="width:40%; "
+                                                                      alt="blue"/></a>
+                <!--<img id="wael" th:src="@{${'/img/' + profile.picPath}}" style="width:100%"
+                                                                       alt="Diaa Alkhatib - Backend Developer">-->
+            </div>
+
+                <!-- w3-display-hover -->
+                <div >
+                    <p th:text="${profile.category}"></p>
+
+                </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
